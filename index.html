@@ -1468,8 +1468,9 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
     animation: heroRise .9s cubic-bezier(.22,.61,.36,1) backwards;
   }
   .hero-eyebrow { animation-delay: .15s; }
-  .hero h1 { animation-delay: .3s; }
-  .hero-sub { animation-delay: .5s; }
+  /* Headline + sub-text: visible from the first frame (fast LCP), gentle slide only */
+  @keyframes heroSlide { from { transform: translateY(14px); } to { transform: translateY(0); } }
+  .hero h1, .hero-sub { animation: heroSlide .7s cubic-bezier(.22,.61,.36,1) backwards; animation-delay: 0s; }
   .hero-actions { animation-delay: .65s; }
   .hero-note { animation-delay: .8s; }
   .hero-stats .stat:nth-child(1) { animation-delay: .9s; }
@@ -1763,6 +1764,13 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
     .qz-header, .qz-body, .qz-footer { padding-left: 20px; padding-right: 20px; }
     .qz-title { font-size: 20px; }
   }
+  /* Hero selling points */
+  .hero-points{display:flex;margin:-14px 0 34px;padding-top:16px;border-top:1px solid rgba(255,255,255,.18);max-width:480px}
+  .hp{padding-right:24px;margin-right:24px;border-right:1px solid rgba(255,255,255,.18)}
+  .hp:last-child{border-right:0;padding-right:0;margin-right:0}
+  .hp-num{display:block;font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--gold);line-height:1}
+  .hp-label{display:block;margin-top:6px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+  @media (max-width: 768px){.hero-points{margin:-18px 0 26px}.hp{padding-right:16px;margin-right:16px}.hp-num{font-size:24px}.hp-label{font-size:10px}}
 </style>
 <!-- Consent Mode v2 default — MUST run before GA4/Ads (analytics.js) load -->
 <script>
@@ -1827,9 +1835,14 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Premium British Furniture</div>
+    <div class="hero-eyebrow">Made to Order</div>
     <h1>Sofas Crafted for<br><em>How You Live</em></h1>
     <p class="hero-sub">Premium corner &amp; U-shape sofas from £599 — free UK delivery, and you pay cash on delivery. See it in your home before you pay a penny.</p>
+    <div class="hero-points">
+      <div class="hp"><span class="hp-num">72</span><span class="hp-label">Fabrics + leather</span></div>
+      <div class="hp"><span class="hp-num">32</span><span class="hp-label">Colours</span></div>
+      <div class="hp"><span class="hp-num">Any</span><span class="hp-label">Size &amp; seats</span></div>
+    </div>
     <div class="hero-actions">
       <a href="#collections" class="btn-outline">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
@@ -1840,23 +1853,9 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
         Order on WhatsApp
       </a>
     </div>
-    <p class="hero-note">No payment online — you pay cash at your door, and only if you're happy with your sofa.</p>
+    <p class="hero-note">No payment online — unwrap and inspect your sofa at your door, then pay cash only if you're happy.</p>
   </div>
   <div class="hero-scroll-cue" aria-hidden="true"></div>
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">8+</div>
-      <div class="stat-label">Collections</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">UK</div>
-      <div class="stat-label">Wide Delivery</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">COD</div>
-      <div class="stat-label">Available</div>
-    </div>
-  </div>
 </section>
 
 <!-- TRUST BAR -->
