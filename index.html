@@ -32,6 +32,7 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '961096633131880');
 fbq('consent', 'revoke');
+try{ if(localStorage.getItem('ss_consent')==='granted') fbq('consent','grant'); }catch(e){}
 fbq('track', 'PageView');
 </script>
 <noscript><img loading="lazy" height="1" width="1" style="display:none"
@@ -40,7 +41,9 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1772,14 +1775,22 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
     ad_personalization: 'denied',
     wait_for_update: 500
   });
+  // Returning visitor who already accepted cookies: apply consent before any tag fires
+  try {
+    if (localStorage.getItem('ss_consent') === 'granted') {
+      gtag('consent', 'update', {
+        ad_storage: 'granted', analytics_storage: 'granted',
+        ad_user_data: 'granted', ad_personalization: 'granted'
+      });
+    }
+  } catch(e){}
 </script>
 
-<!-- GA4 loads here (analytics.js already holds your real ID G-NPEJYF56EZ) -->
-<script src="/analytics.js"></script>
-
-<!-- Google Ads — reuses the gtag.js loaded by analytics.js.
-     Account AW-18467779574 — conversion: Contact (WhatsApp lead). -->
+<!-- GA4 (G-NPEJYF56EZ) + Google Ads (AW-18467779574) — async, does not block rendering -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NPEJYF56EZ"></script>
 <script>
+  gtag('js', new Date());
+  gtag('config', 'G-NPEJYF56EZ');
   gtag('config', 'AW-18467779574');
 </script>
 </head>
