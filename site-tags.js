@@ -99,3 +99,26 @@
     buildBanner();
   }
 })();
+/* ---- Lead source code on WhatsApp messages ----
+   Google ad click (gclid/gbraid/wbraid) -> adds "Ref: G" to the pre-filled message
+   Meta ad click (fbclid or utm_source=facebook/instagram/meta) -> adds "Ref: M"
+   Anything else -> no code. Source is remembered for the visit (sessionStorage). */
+(function () {
+  var KEY = 'ss_src', WA = 'wa.me/447438135313';
+  var q = location.search, s = null;
+  if (/[?&](gclid|gbraid|wbraid)=/.test(q)) s = 'G';
+  else if (/[?&]fbclid=/.test(q) || /[?&]utm_source=(facebook|fb|instagram|ig|meta)\b/i.test(q)) s = 'M';
+  try { if (s) sessionStorage.setItem(KEY, s); else s = sessionStorage.getItem(KEY); } catch (e) {}
+  if (!s) return;
+  function tag(url) {
+    if (typeof url !== 'string' || url.indexOf(WA) < 0 || url.indexOf('Ref%3A') > -1) return url;
+    if (url.indexOf('text=') > -1) return url + encodeURIComponent('\n\nRef: ' + s);
+    return url + (url.indexOf('?') > -1 ? '&' : '?') + 'text=' + encodeURIComponent('Ref: ' + s);
+  }
+  var open = window.open;
+  window.open = function (u) { var a = Array.prototype.slice.call(arguments); a[0] = tag(u); return open.apply(window, a); };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="' + WA + '"]');
+    if (a) a.href = tag(a.href);
+  }, true);
+})();
