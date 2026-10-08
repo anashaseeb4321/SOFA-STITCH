@@ -20,15 +20,22 @@
 <meta name="twitter:title" content="Sofa Stitch — Premium Sofas Delivered Across the UK">
 <meta name="twitter:description" content="Premium corner & U-shape sofas from £599. Free UK delivery, cash on delivery. Order via WhatsApp.">
 <meta name="twitter:image" content="https://sofastitch.co.uk/images/hero.jpg">
-<!-- Meta Pixel Code -->
+
+<!-- LCP hero image: tell the browser about it in the first bytes of HTML, before
+     the CSS that references it has even downloaded. This removes ~1s of
+     "resource load delay" from Largest Contentful Paint. -->
+<link rel="preload" as="image" href="images/hero.jpg" media="(min-width: 901px)" fetchpriority="high">
+<link rel="preload" as="image" href="images/hero-mobile.jpg" media="(max-width: 900px)" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Meta Pixel Code — stub runs now (so every fbq() call still queues correctly),
+     but fbevents.js itself is fetched after the page has painted. -->
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+!function(f,b,e,v,n){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+f.__ssLoadFbq=function(){var t=b.createElement(e);t.async=!0;t.src=v;
+b.head.appendChild(t)};}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '961096633131880');
 fbq('consent', 'revoke');
@@ -1839,12 +1846,39 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
   } catch(e){}
 </script>
 
-<!-- GA4 (G-NPEJYF56EZ) + Google Ads (AW-18467779574) — async, does not block rendering -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NPEJYF56EZ"></script>
+<!-- GA4 (G-NPEJYF56EZ) + Google Ads (AW-18467779574)
+     The config calls run immediately and queue into dataLayer; the ~230 KiB
+     gtag.js bundle is only fetched once the page has painted (or on the first
+     tap/scroll, whichever comes first). Nothing is lost — dataLayer replays. -->
 <script>
   gtag('js', new Date());
   gtag('config', 'G-NPEJYF56EZ');
   gtag('config', 'AW-18467779574');
+
+  /* Load the heavy third-party tags after first paint, or immediately on the
+     first real user interaction. Keeps them off the critical path without
+     dropping a single PageView or conversion. */
+  (function(){
+    var done = false;
+    function loadTags(){
+      if (done) return; done = true;
+      var g = document.createElement('script');
+      g.async = true;
+      g.src = 'https://www.googletagmanager.com/gtag/js?id=G-NPEJYF56EZ';
+      document.head.appendChild(g);
+      try { if (window.__ssLoadFbq) window.__ssLoadFbq(); } catch(e){}
+      ['pointerdown','touchstart','keydown','scroll'].forEach(function(ev){
+        removeEventListener(ev, loadTags, true);
+      });
+    }
+    ['pointerdown','touchstart','keydown','scroll'].forEach(function(ev){
+      addEventListener(ev, loadTags, { capture:true, passive:true, once:true });
+    });
+    if (document.readyState === 'complete') setTimeout(loadTags, 300);
+    else addEventListener('load', function(){ setTimeout(loadTags, 300); });
+    // Hard ceiling, so the tags always fire even on a page nobody touches.
+    setTimeout(loadTags, 3500);
+  })();
 </script>
 <script>
 /* ---- Lead source code on WhatsApp messages ----
@@ -1877,12 +1911,12 @@ body{background:var(--bg);letter-spacing:.005em}
 ::selection{background:var(--gold);color:#fff}
 a{color:var(--gold-deep)}a:hover{color:var(--gold)}
 /* loader */
-#ssLoader{position:fixed;inset:0;z-index:10000;background:var(--ink);display:flex;align-items:center;justify-content:center;pointer-events:none;animation:sslOut 1s var(--ease) 1.25s forwards}
+#ssLoader{position:fixed;inset:0;z-index:10000;background:var(--ink);display:flex;align-items:center;justify-content:center;pointer-events:none;animation:sslOut .5s var(--ease) .45s forwards}
 .ssl-inner{display:flex;flex-direction:column;align-items:center;gap:18px}
 .ssl-word{display:flex;gap:.28em;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(40px,6vw,64px);color:#F4EFE7;overflow:hidden;line-height:1.1;padding-bottom:.08em}
-.ssl-word span{display:inline-block;transform:translateY(110%);animation:sslUp .9s var(--ease) forwards}
-.ssl-word span:nth-child(2){animation-delay:.12s;color:var(--gold-light)}
-.ssl-line{height:1px;width:0;background:var(--gold);animation:sslLine 1s var(--ease) .3s forwards}
+.ssl-word span{display:inline-block;transform:translateY(110%);animation:sslUp .5s var(--ease) forwards}
+.ssl-word span:nth-child(2){animation-delay:.08s;color:var(--gold-light)}
+.ssl-line{height:1px;width:0;background:var(--gold);animation:sslLine .5s var(--ease) .12s forwards}
 @keyframes sslUp{to{transform:none}}@keyframes sslLine{to{width:180px}}
 @keyframes sslOut{to{clip-path:inset(0 0 100% 0);visibility:hidden}}
 /* nav */
@@ -1892,25 +1926,36 @@ nav.scrolled{padding:12px 56px;background:rgba(251,249,245,.9);box-shadow:none}
 .nav-links a{font-size:12px;letter-spacing:.16em;color:var(--text)}
 .nav-cta{background:var(--ink)!important;color:#F4EFE7!important;padding:13px 26px!important;border-radius:0!important;letter-spacing:.16em}
 .nav-cta:hover{background:var(--gold)!important}
-/* hero */
-.hero{min-height:720px}
+/* hero
+   The hero used to be a hard height:100vh flex box aligned to flex-end. On any
+   short viewport (Safari with its toolbar + favourites bar, small laptops) the
+   content was taller than the box, and flex-end overflow pushes the extra UP —
+   straight under the fixed nav, so the headline overlapped it and got clipped.
+   height:auto + min-height lets the hero grow instead of overflowing, and the
+   padding-top guarantees clearance under the nav. */
+.hero{height:auto;min-height:100vh;min-height:100svh;padding-top:120px}
+@supports not (height:100svh){ .hero{min-height:720px} }
 .hero-content{padding:0 56px 96px;max-width:920px;will-change:transform,opacity}
 .hero-overlay{background:linear-gradient(to right,rgba(15,12,8,.86) 0%,rgba(15,12,8,.62) 38%,rgba(15,12,8,.18) 66%,rgba(15,12,8,0) 100%),linear-gradient(to top,rgba(15,12,8,.6) 0%,rgba(15,12,8,0) 50%)}
 @media (min-width:901px){
- .ss-js .hero-bg{animation:heroReveal 2s var(--ease) 1.05s both,kenburns 24s ease-in-out 3s infinite alternate}
- .ss-noload .hero-bg{animation-delay:0s,2s}
+ .ss-js .hero-bg{animation:heroReveal .9s var(--ease) .25s both,kenburns 24s ease-in-out 1.4s infinite alternate}
+ .ss-noload .hero-bg{animation-delay:0s,1s}
 }
-@keyframes heroReveal{from{clip-path:inset(14% 10% 14% 10%);transform:scale(1.22)}to{clip-path:inset(0);transform:scale(1.02)}}
+/* Starts close to full size so the hero counts as painted almost immediately —
+   a deep clip-path inset here is what pushed Largest Contentful Paint past 4s. */
+@keyframes heroReveal{from{clip-path:inset(5% 4% 5% 4%);transform:scale(1.1)}to{clip-path:inset(0);transform:scale(1.02)}}
 .hero-eyebrow{font-size:11px;letter-spacing:.32em;color:var(--gold-light);margin-bottom:28px}
 .hero-eyebrow::before{width:48px;background:var(--gold-light)}
-.hero h1{font-size:clamp(50px,7.4vw,116px);font-weight:500;line-height:.96;letter-spacing:-.02em;margin-bottom:30px;animation:none;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+/* line-height was .96 — tighter than the font's own box, so the two lines'
+   inline-block word wrappers overlapped each other in Safari. 1.02 clears it. */
+.hero h1{font-size:clamp(46px,6.2vw,100px);font-weight:500;line-height:1.02;letter-spacing:-.02em;margin-bottom:30px;animation:none;text-shadow:0 2px 30px rgba(0,0,0,.35)}
 .hero h1 em{color:var(--gold-light);font-weight:400}
 .hero-sub{font-size:17px;font-weight:300;max-width:500px;line-height:1.75;animation:heroRise .9s var(--ease) backwards}
 .hero-points{border-top-color:rgba(255,255,255,.22);margin:-10px 0 38px;animation:heroRise .9s var(--ease) backwards}
 .hp-num{font-size:44px;font-weight:500;color:var(--gold-light)}
 .hp-label{letter-spacing:.18em;font-weight:500}
-.ss-js .hero-eyebrow{animation-delay:1.25s}.ss-js .hero-sub{animation-delay:1.55s}.ss-js .hero-points{animation-delay:1.7s}.ss-js .hero-actions{animation-delay:1.85s}.ss-js .hero-note{animation-delay:2s}
-.ss-noload .hero-eyebrow{animation-delay:.1s}.ss-noload .hero-sub{animation-delay:.4s}.ss-noload .hero-points{animation-delay:.55s}.ss-noload .hero-actions{animation-delay:.7s}.ss-noload .hero-note{animation-delay:.85s}
+.ss-js .hero-eyebrow{animation-delay:.45s}.ss-js .hero-sub{animation-delay:.6s}.ss-js .hero-points{animation-delay:.72s}.ss-js .hero-actions{animation-delay:.84s}.ss-js .hero-note{animation-delay:.96s}
+.ss-noload .hero-eyebrow{animation-delay:.1s}.ss-noload .hero-sub{animation-delay:.3s}.ss-noload .hero-points{animation-delay:.42s}.ss-noload .hero-actions{animation-delay:.54s}.ss-noload .hero-note{animation-delay:.66s}
 .btn-primary,.btn-outline,.btn-dark{border-radius:0;padding:18px 34px;font-size:12px;letter-spacing:.18em;transition:transform .5s var(--ease),background .3s,color .3s,box-shadow .3s,border-color .3s}
 .btn-primary{background:var(--gold-light);color:var(--ink);box-shadow:none}
 .btn-primary:hover{background:#D8B571;box-shadow:0 14px 30px -10px rgba(201,163,94,.55);filter:none;color:var(--ink)}
@@ -1919,7 +1964,9 @@ nav.scrolled{padding:12px 56px;background:rgba(251,249,245,.9);box-shadow:none}
 .hero-note{font-weight:300;color:rgba(255,255,255,.78)}
 .hero-scroll-cue{height:64px;bottom:22px}
 /* split words */
-.ssw{display:inline-block;overflow:hidden;vertical-align:bottom;padding:0 .08em .14em 0;margin-bottom:-.14em}
+/* Italic Cormorant has deep descenders ("You", "Live"); .14em of room clipped
+   them in Safari, which rounds inline-block overflow boxes differently. */
+.ssw{display:inline-block;overflow:hidden;vertical-align:bottom;padding:0 .08em .24em 0;margin-bottom:-.24em;line-height:inherit}
 .ssw>span{display:inline-block;transition:transform 1.2s var(--ease);transition-delay:calc(var(--i,0)*65ms)}
 .ss-js .ssw>span{transform:translateY(112%)}
 .ss-js .ss-in .ssw>span,.ss-js .in-view .ssw>span{transform:none}
@@ -2048,6 +2095,21 @@ footer::after{content:'Sofa Stitch';display:block;text-align:center;font-family:
  footer{padding:80px 24px 32px}
 }
 @media (max-width:600px){.products-grid{gap:44px}.hero h1{font-size:42px}}
+/* Short desktop viewports (Safari with toolbar + favourites bar, 13" laptops).
+   Rather than letting the hero grow past the fold and push the WhatsApp CTA out
+   of sight, compact the type and spacing so the whole hero still fits. */
+@media (min-width:901px) and (max-height:820px){
+ .hero{padding-top:104px}
+ .hero h1{font-size:clamp(40px,4.6vw,68px);margin-bottom:18px}
+ .hero-eyebrow{margin-bottom:14px}
+ .hero-sub{font-size:15.5px;line-height:1.6;max-width:460px}
+ .hero-points{margin:-4px 0 22px;padding-top:12px}
+ .hp-num{font-size:32px}
+ .hero-content{padding-bottom:52px}
+ .hero-actions .btn-primary,.hero-actions .btn-outline{padding:14px 28px}
+ .hero-note{margin-top:12px;font-size:13px}
+ .hero-scroll-cue{height:40px;bottom:10px}
+}
 @media (prefers-reduced-motion:reduce){#ssLoader{display:none}.ss-js .ssw>span{transform:none}.ss-js .product-card-img,.ss-js .acc-card-img{clip-path:none}.ss-js .product-card-img img,.ss-js .acc-card-img img{transform:none}.ss-js .hero-bg{animation:none}}
 </style>
 <script>document.documentElement.classList.add('ss-js')</script>
@@ -3158,25 +3220,42 @@ footer::after{content:'Sofa Stitch';display:block;text-align:center;font-family:
   const mobileMenu = document.getElementById('mobileMenu');
   let lastScrollY = window.scrollY;
 
+  // Cached layout numbers. Reading scrollHeight/innerHeight inside the scroll
+  // handler forced a full reflow on every scroll event — that was the "Forced
+  // reflow" item in PageSpeed. Measure on resize/load instead, never on scroll.
+  let viewH = window.innerHeight;
+  let scrollMax = 0;
+  function measure() {
+    viewH = window.innerHeight;
+    scrollMax = document.documentElement.scrollHeight - viewH;
+  }
+  let ticking = false;
   function onScroll() {
-    const y = window.scrollY;
-    navbar.classList.toggle('scrolled', y > 60);
-    // hide nav scrolling down, reveal scrolling up
-    if (y > 140 && y > lastScrollY && !mobileMenu.classList.contains('open')) {
-      navbar.classList.add('nav-hidden');
-    } else {
-      navbar.classList.remove('nav-hidden');
-    }
-    lastScrollY = y;
-    // gold progress line
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    scrollProgress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
-    // sticky mobile order bar after the hero
-    const showBar = y > window.innerHeight * 0.85;
-    mobileCtaBar.classList.toggle('show', showBar);
-    document.body.classList.toggle('mcb-visible', showBar);
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      const y = window.scrollY;
+      navbar.classList.toggle('scrolled', y > 60);
+      // hide nav scrolling down, reveal scrolling up
+      if (y > 140 && y > lastScrollY && !mobileMenu.classList.contains('open')) {
+        navbar.classList.add('nav-hidden');
+      } else {
+        navbar.classList.remove('nav-hidden');
+      }
+      lastScrollY = y;
+      // gold progress line
+      scrollProgress.style.width = (scrollMax > 0 ? (y / scrollMax) * 100 : 0) + '%';
+      // sticky mobile order bar after the hero
+      const showBar = y > viewH * 0.85;
+      mobileCtaBar.classList.toggle('show', showBar);
+      document.body.classList.toggle('mcb-visible', showBar);
+    });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', measure, { passive: true });
+  window.addEventListener('load', measure);
+  measure();
   onScroll();
 
   // BURGER MENU
@@ -3208,16 +3287,17 @@ footer::after{content:'Sofa Stitch';display:block;text-align:center;font-family:
   });
 
   // Stagger helper: sets per-card delay + retriggers the entrance animation
+  // One forced reflow for the whole batch instead of one per card — filtering
+  // used to trigger ~18 synchronous layouts in a row.
   function staggerCards() {
-    let i = 0;
+    const shown = [];
     document.querySelectorAll('.product-card').forEach(card => {
-      if (card.classList.contains('visible')) {
-        card.classList.remove('visible');
-        void card.offsetWidth; // reflow to restart animation
-        card.style.setProperty('--d', Math.min(i * 0.07, 0.6) + 's');
-        card.classList.add('visible');
-        i++;
-      }
+      if (card.classList.contains('visible')) { card.classList.remove('visible'); shown.push(card); }
+    });
+    void document.body.offsetWidth;
+    shown.forEach((card, i) => {
+      card.style.setProperty('--d', Math.min(i * 0.07, 0.6) + 's');
+      card.classList.add('visible');
     });
   }
   // initial load stagger
@@ -3926,7 +4006,7 @@ sizeLine + '\n\n' +
     }); })(el);
   }
   var h1=document.querySelector('.hero h1'); split(h1);
-  setTimeout(function(){ h1 && h1.classList.add('ss-in'); }, reduce?0:(noload?150:1150));
+  setTimeout(function(){ h1 && h1.classList.add('ss-in'); }, reduce?0:(noload?120:420));
   document.querySelectorAll('.section-title').forEach(split);
   // image reveals
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('ss-shown'); io.unobserve(e.target);} }); },{threshold:.15});
@@ -3935,7 +4015,21 @@ sizeLine + '\n\n' +
   document.querySelectorAll('.products-grid .product-card-img, .acc-grid .acc-card-img').forEach(function(el,i){ el.style.transitionDelay=((i%3)*0.12)+'s'; });
   // hero parallax
   var hc=document.querySelector('.hero-content');
-  if(hc && !reduce && innerWidth>900){ addEventListener('scroll',function(){ var y=scrollY; if(y>innerHeight) return; hc.style.transform='translateY('+(y*.28)+'px)'; hc.style.opacity=Math.max(0,1-y/(innerHeight*.85)); },{passive:true}); }
+  if(hc && !reduce && innerWidth>900){
+    // innerHeight cached outside the handler — reading it per scroll event
+    // forced a layout flush on every frame.
+    var vh=innerHeight, pTick=false;
+    addEventListener('resize',function(){ vh=innerHeight; },{passive:true});
+    addEventListener('scroll',function(){
+      if(pTick) return; pTick=true;
+      requestAnimationFrame(function(){
+        pTick=false;
+        var y=scrollY; if(y>vh) return;
+        hc.style.transform='translateY('+(y*.28)+'px)';
+        hc.style.opacity=Math.max(0,1-y/(vh*.85));
+      });
+    },{passive:true});
+  }
   if(fine && !reduce){
     // cursor
     var c=document.createElement('div'); c.className='ss-cursor'; c.innerHTML='<span>View</span>'; document.body.appendChild(c);
