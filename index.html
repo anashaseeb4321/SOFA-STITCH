@@ -230,6 +230,7 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
     font-style: italic;
     color: var(--gold);
   }
+  .sub-short { display: none; }
   .hero-sub {
     font-size: 17px;
     color: rgba(255,255,255,0.92);
@@ -1347,7 +1348,7 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
       flex-direction: column;
       justify-content: flex-end;
       align-items: stretch;
-      padding: 200px 0 0;
+      padding: 164px 0 0;
     }
     .hero-bg {
       transform: none;
@@ -1358,26 +1359,33 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
     .hero-overlay {
       background: linear-gradient(
         to bottom,
-        rgba(12,11,8,0) 0%,
-        rgba(12,11,8,0.02) 22%,
-        rgba(12,11,8,0.42) 30%,
-        rgba(12,11,8,0.86) 36%,
-        rgba(12,11,8,0.90) 100%
+        rgba(14,13,10,0) 0%,
+        rgba(14,13,10,0.03) 13%,
+        rgba(14,13,10,0.14) 22%,
+        rgba(14,13,10,0.34) 31%,
+        rgba(14,13,10,0.60) 41%,
+        rgba(14,13,10,0.80) 53%,
+        rgba(14,13,10,0.90) 68%,
+        rgba(14,13,10,0.93) 100%
       );
     }
     /* Scrim travels with the text, so it stays readable on short phones too */
     /* Scrim spans the full width; the 24px inset lives here, not on .hero */
     .hero-content {
-      background: linear-gradient(to top, rgba(12,11,8,0.55), rgba(12,11,8,0.34) 62%, rgba(12,11,8,0) 100%);
+      background: linear-gradient(to top, rgba(14,13,10,0.52), rgba(14,13,10,0.30) 55%, rgba(14,13,10,0.10) 85%, rgba(14,13,10,0) 100%);
     }
     .hero-content { padding: 38px 24px 30px; max-width: 100%; }
-    /* Compact the hero type so the whole block clears the sofa */
-    .hero h1 { font-size: 33px; margin-bottom: 14px; }
-    .hero-sub { font-size: 15px; line-height: 1.55; margin-bottom: 0; }
-    .hero-points { margin: 16px 0 22px; padding-top: 14px; }
-    .hero-actions { gap: 10px; }
-    .hero-actions .btn-primary, .hero-actions .btn-outline { padding: 13px 22px; font-size: 13px; }
-    .hero-note { margin-top: 14px; font-size: 12.5px; line-height: 1.5; }
+    /* One clear message on a phone: short sub-line, no repeated note,
+       WhatsApp first and full width. */
+    .sub-full { display: none; }
+    .sub-short { display: inline; }
+    .hero h1 { font-size: 34px; margin-bottom: 14px; }
+    .hero-sub { font-size: 15.5px; line-height: 1.55; margin-bottom: 0; max-width: 100%; }
+    .hero-points { margin: 20px 0 24px; padding-top: 16px; }
+    .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+    .hero-actions .btn-primary { order: -1; justify-content: center; padding: 15px 22px; font-size: 14px; }
+    .hero-actions .btn-outline { justify-content: center; padding: 13px 22px; font-size: 13px; }
+    .hero-note { display: none; }
     .hero-eyebrow { margin-bottom: 14px; }
     .hero-stats {
       position: static;
@@ -1899,7 +1907,7 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
   <div class="hero-content">
     <div class="hero-eyebrow">Made to Order</div>
     <h1>Sofas Crafted for<br><em>How You Live</em></h1>
-    <p class="hero-sub">Premium corner &amp; U-shape sofas from £599 — free UK delivery, and you pay cash on delivery. See it in your home before you pay a penny.</p>
+    <p class="hero-sub"><span class="sub-full">Premium corner &amp; U-shape sofas from £599 — free UK delivery, and you pay cash on delivery. See it in your home before you pay a penny.</span><span class="sub-short">Corner, U-shape &amp; L-shape sofas from £599. Free UK delivery — pay cash at your door.</span></p>
     <div class="hero-points">
       <div class="hp"><span class="hp-num">72</span><span class="hp-label">Fabrics + leather</span></div>
       <div class="hp"><span class="hp-num">32</span><span class="hp-label">Colours</span></div>
