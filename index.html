@@ -166,29 +166,30 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
     background-image: url('images/hero.jpg');
     background-size: cover;
     background-position: center 40%;
-    transform: scale(1.06);
+    transform: scale(1.02);
     animation: kenburns 24s ease-in-out infinite alternate;
     will-change: transform;
   }
   @keyframes kenburns {
-    from { transform: scale(1.06) translateY(0); }
-    to   { transform: scale(1.15) translateY(-1.5%); }
+    from { transform: scale(1.02) translateY(0); }
+    to   { transform: scale(1.07) translateY(-1%); }
   }
   .hero-overlay {
     position: absolute;
     inset: 0;
     background:
       linear-gradient(
-        to top,
-        rgba(10,10,8,0.94) 0%,
-        rgba(10,10,8,0.48) 42%,
-        rgba(10,10,8,0.08) 100%
+        to right,
+        rgba(12,11,8,0.86) 0%,
+        rgba(12,11,8,0.72) 32%,
+        rgba(12,11,8,0.30) 58%,
+        rgba(12,11,8,0.04) 80%,
+        rgba(12,11,8,0) 100%
       ),
       linear-gradient(
-        to right,
-        rgba(10,10,8,0.58) 0%,
-        rgba(10,10,8,0.14) 46%,
-        rgba(10,10,8,0) 72%
+        to top,
+        rgba(12,11,8,0.55) 0%,
+        rgba(12,11,8,0) 55%
       );
   }
   .hero-content {
@@ -1352,18 +1353,23 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
       transform: none;
       animation: none;
       background-image: url('images/hero-mobile.jpg');
-      background-position: center center;
+      background-position: center top;
     }
     .hero-overlay {
       background: linear-gradient(
-        to top,
-        rgba(10,10,8,0.92) 0%,
-        rgba(10,10,8,0.70) 45%,
-        rgba(10,10,8,0.30) 75%,
-        rgba(10,10,8,0.10) 100%
+        to bottom,
+        rgba(12,11,8,0) 0%,
+        rgba(12,11,8,0.02) 20%,
+        rgba(12,11,8,0.55) 30%,
+        rgba(12,11,8,0.86) 38%,
+        rgba(12,11,8,0.90) 100%
       );
     }
-    .hero-content { padding: 0 24px 26px; max-width: 100%; }
+    /* Scrim travels with the text, so it stays readable on short phones too */
+    .hero-content {
+      background: linear-gradient(to top, rgba(12,11,8,0.45), rgba(12,11,8,0.28) 65%, rgba(12,11,8,0) 100%);
+    }
+    .hero-content { padding: 44px 24px 26px; max-width: 100%; }
     .hero-stats {
       position: static;
       left: auto; right: auto; bottom: auto;
