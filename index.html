@@ -532,6 +532,20 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
     align-items: center;
     justify-content: space-between;
   }
+  /* Bundle price shown up-front on the card ("£899 with the coffee table") */
+  .product-set-note {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold-deep);
+    margin: -10px 0 16px;
+    letter-spacing: .01em;
+  }
+  .pp-set-note {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold-deep);
+    margin: -2px 0 18px;
+  }
   .product-price {
     font-family: 'Playfair Display', serif;
     font-size: 24px;
@@ -1187,11 +1201,11 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
   .pp-addons-title { font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:12px; }
   .pp-addons-title span { text-transform:none; letter-spacing:0; font-weight:400; }
   /* Visual add-on cards — customer sees the actual piece */
-  .pp-addons-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:14px; }
+  .pp-addons-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(142px, 1fr)); gap:12px; }
   @media (max-width:400px){ .pp-addons-grid { grid-template-columns:1fr 1fr; } }
   .addon-card { position:relative; display:flex; flex-direction:column; background:var(--bg2); border:1.5px solid var(--border); border-radius:8px; overflow:hidden; transition:border-color .18s, box-shadow .18s; text-align:left; }
   .addon-card.selected { border-color:var(--gold); box-shadow:0 0 0 3px rgba(184,144,42,0.14); }
-  .addon-card-img { width:100%; height:150px; object-fit:cover; background:var(--bg3); display:block; }
+  .addon-card-img { width:100%; height:118px; object-fit:cover; background:var(--bg3); display:block; }
   .addon-card-body { padding:12px 14px 14px; display:flex; flex-direction:column; gap:3px; }
   .addon-name { font-size:15px; font-weight:600; color:var(--text); }
   .addon-sub { font-size:12px; color:var(--text-muted); line-height:1.35; }
@@ -1203,12 +1217,19 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
   .addon-add-btn .ico-plus, .addon-add-btn .ico-check { align-items:center; gap:6px; }
   .addon-add-btn .ico-plus { display:inline-flex; } .addon-add-btn .ico-check { display:none; }
   .addon-card.selected .addon-add-btn .ico-plus { display:none; } .addon-card.selected .addon-add-btn .ico-check { display:inline-flex; }
-  .addon-selected-badge { position:absolute; top:10px; right:10px; width:26px; height:26px; border-radius:50%; background:var(--gold); color:#fff; display:none; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,.2); }
+  .addon-selected-badge { position:absolute; top:10px; right:10px; min-width:26px; height:26px; padding:0 7px; border-radius:13px; background:var(--gold); color:#fff; font-size:13px; font-weight:700; display:none; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,.2); }
+  /* Quantity stepper — shown once a piece has been added */
+  .addon-qty { margin-top:10px; display:flex; align-items:center; border:1.5px solid var(--gold); border-radius:5px; overflow:hidden; background:var(--white); }
+  .qty-btn { flex:0 0 34px; height:34px; border:0; background:var(--gold); color:#fff; font-size:19px; font-weight:700; line-height:1; cursor:pointer; font-family:inherit; padding:0; transition:background .18s; }
+  .qty-btn:hover { background:var(--gold-light); }
+  .qty-num { flex:1; text-align:center; font-size:14px; font-weight:700; color:var(--text); }
+  .addon-price s { color:var(--text-muted); font-weight:500; font-size:12px; margin-left:5px; }
+  .save-pill { display:inline-block; background:rgba(184,144,42,.13); color:var(--gold-deep); border-radius:3px; padding:2px 7px; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; margin-left:7px; vertical-align:middle; }
   .addon-card.selected .addon-selected-badge { display:flex; }
   /* modal variant */
   .modal-addons { margin-top:4px; }
   .modal-addons .pp-addons-grid { gap:12px; }
-  .modal-addons .addon-card-img { height:120px; }
+  .modal-addons .addon-card-img { height:104px; }
   .modal-addon-total { margin-top:12px; font-size:14px; font-weight:600; color:var(--text); background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:10px 14px; }
   .modal-addon-total span { color:var(--gold); }
   .pp-price-breakdown { font-size:13px; color:var(--text-muted); margin-top:12px; min-height:18px; }
@@ -1962,7 +1983,7 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
     <div class="product-card visible" data-category="corner"
       data-name="Ashton Corner Sofa"
       data-collection="Corner Collection"
-      data-price="£750"
+      data-price="£749"
       data-desc="A clean-lined corner sofa with deep cushioning and a contemporary silhouette. Perfect for modern living spaces."
       data-images='["images/corner-ashton/ashton1.jpg", "images/corner-ashton/ashton2.jpg", "images/corner-ashton/ashton3.jpg", "images/corner-ashton/ashton4.jpg"]'
       data-features='["Available in multiple fabric options", "Sturdy hardwood frame", "Deep foam & fibre cushions", "Custom size available"]'>
@@ -1975,7 +1996,7 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
         <div class="product-name">Ashton</div>
         <div class="product-desc">Contemporary corner sofa with deep cushioning and clean lines.</div>
         <div class="product-footer">
-          <div class="product-price">£750 <span>incl. delivery</span></div>
+          <div class="product-price">£749 <span>incl. delivery</span></div>
           <a href="#" class="btn-whatsapp product-wa" data-product="Ashton Corner Sofa">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.118 1.528 5.845L.057 23.25a.75.75 0 00.927.928l5.432-1.465A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.925 0-3.734-.504-5.303-1.385l-.38-.221-3.924 1.059 1.078-3.817-.247-.396A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
             Order on WhatsApp
@@ -2011,24 +2032,50 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
     </div>
 
     <div class="product-card visible" data-category="corner"
-      data-name="Lilly Corner Sofa"
+      data-name="Original Lilly Corner Sofa"
       data-collection="Corner Collection"
       data-price="£699"
-      data-desc="Soft channel-stitched styling with plush, pillow-back comfort. The Lilly corner is a warm, inviting centrepiece for any family living room."
-      data-images='["images/corner-lilly/lilly1.jpg", "images/corner-lilly/lilly2.jpg", "images/corner-lilly/lilly3.jpg", "images/corner-lilly/lilly4.jpg", "images/corner-lilly/lilly5.jpg", "images/corner-lilly/lilly6.jpg", "images/corner-lilly/lilly7.jpg", "images/corner-lilly/lilly8.jpg"]'
+      data-desc="Soft channel-stitched styling with plush, pillow-back comfort. The Original Lilly corner is a warm, inviting centrepiece for any family living room."
+      data-images='["images/corner-lilly/lilly1.jpg", "images/corner-lilly/lilly5.jpg", "images/corner-lilly/lilly8.jpg", "images/corner-lilly/lilly7.jpg"]'
       data-features='["Available in multiple fabric options", "Sturdy hardwood frame", "Deep foam & fibre cushions", "Custom size available"]'>
       <div class="product-card-img">
         <div class="product-badge">New</div>
-        <img loading="lazy" src="images/corner-lilly/lilly1.jpg" alt="Lilly Corner Sofa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="product-img-placeholder" style="display:none">Lilly Corner</div>
+        <img loading="lazy" src="images/corner-lilly/lilly1.jpg" alt="Original Lilly Corner Sofa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="product-img-placeholder" style="display:none">Original Lilly</div>
       </div>
       <div class="product-card-body">
         <div class="product-collection-label">Corner Collection</div>
-        <div class="product-name">Lilly Corner</div>
+        <div class="product-name">Original Lilly</div>
         <div class="product-desc">Plush channel-stitched corner sofa with deep pillow-back comfort.</div>
         <div class="product-footer">
           <div class="product-price">£699 <span>incl. delivery</span></div>
-          <a href="#" class="btn-whatsapp product-wa" data-product="Lilly Corner Sofa">
+          <a href="#" class="btn-whatsapp product-wa" data-product="Original Lilly Corner Sofa">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.118 1.528 5.845L.057 23.25a.75.75 0 00.927.928l5.432-1.465A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.925 0-3.734-.504-5.303-1.385l-.38-.221-3.924 1.059 1.078-3.817-.247-.396A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Order on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card visible" data-category="corner"
+      data-name="Alska Corner Sofa"
+      data-collection="Corner Collection"
+      data-price="£699"
+      data-desc="Softly tailored with a relaxed, low-slung profile. The Alska corner brings easy everyday comfort to family living rooms."
+      data-images='["images/corner-lilly/lilly3.jpg", "images/corner-lilly/lilly2.jpg", "images/corner-lilly/lilly4.jpg"]'
+      data-features='["Available in multiple fabric options", "Sturdy hardwood frame", "Deep foam &amp; fibre cushions", "Custom size available"]'>
+      <div class="product-card-img">
+        <div class="product-badge">New</div>
+        <img loading="lazy" src="images/corner-lilly/lilly3.jpg" alt="Alska Corner Sofa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="product-img-placeholder" style="display:none">Alska</div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-collection-label">Corner Collection</div>
+        <div class="product-name">Alska</div>
+        <div class="product-desc">Relaxed, low-slung corner sofa with easy everyday comfort.</div>
+        <div class="product-footer">
+          <div class="product-price">£699 <span>incl. delivery</span></div>
+          <a href="#" class="btn-whatsapp product-wa" data-product="Alska Corner Sofa">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.118 1.528 5.845L.057 23.25a.75.75 0 00.927.928l5.432-1.465A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.925 0-3.734-.504-5.303-1.385l-.38-.221-3.924 1.059 1.078-3.817-.247-.396A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
             Order on WhatsApp
           </a>
@@ -2093,7 +2140,7 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
       data-collection="L-Shape Collection"
       data-price="£849"
       data-desc="The Lilly in a space-smart L-shape — plush channel-stitched comfort that fits neatly into modern rooms."
-      data-images='["images/lshape-lilly/lilly-lshape1.jpg", "images/lshape-lilly/lilly-lshape2.jpg", "images/lshape-lilly/lilly-lshape3.jpg", "images/lshape-lilly/lilly-lshape4.jpg"]'
+      data-images='["images/lshape-lilly/lilly-lshape1.jpg", "images/lshape-lilly/lilly-lshape4.jpg"]'
       data-features='["Available in multiple fabric options", "Sturdy hardwood frame", "Deep foam & fibre cushions", "Custom size available"]'>
       <div class="product-card-img">
         <div class="product-badge">New</div>
@@ -2412,8 +2459,9 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
     <div class="section-eyebrow">Complete the Look</div>
     <h2 class="section-title">Matching <em>Accessories</em></h2>
   </div>
-  <p class="acc-intro fade-up">Finish your living room with pieces made in the same fabric as your sofa. Add any of these to your order and pay on delivery, exactly like your sofa.</p>
+  <p class="acc-intro fade-up">Finish your living room with pieces made in the same fabric as your sofa. Add any of these to your order and pay on delivery, exactly like your sofa — and take <strong>£30 off every table and stool</strong> when it goes with a sofa.</p>
   <div class="acc-grid fade-up">
+    <!-- Prices here must match the ADDONS object in the main script below. -->
     <div class="acc-card">
       <div class="acc-card-img"><img src="images/coffeetable/coffeetable1.jpg" alt="Coffee Table — matching accessory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
       <div class="acc-card-body">
@@ -2421,8 +2469,80 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
         <div class="acc-name">Coffee Table</div>
         <div class="acc-desc">Upholstered with a glass top — finished in your chosen sofa fabric.</div>
         <div class="acc-footer">
-          <div class="acc-price">£170</div>
-          <a data-qz-product="Coffee Table" class="btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/447438135313?text=Hi%20Sofa%20Stitch%20%F0%9F%91%8B%20I%27m%20interested%20in%20the%20Coffee%20Table%20%28%C2%A3170%29.%20Does%20it%20come%20in%20my%20sofa%20fabric%2C%20and%20how%20does%20cash%20on%20delivery%20work%3F"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.118 1.528 5.845L.057 23.25a.75.75 0 00.927.928l5.432-1.465A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.925 0-3.734-.504-5.303-1.385l-.38-.221-3.924 1.059 1.078-3.817-.247-.396A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Order on WhatsApp</a>
+          <div class="acc-price">£180</div>
+          <a data-qz-product="Coffee Table" class="btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/447438135313?text=Hi%20Sofa%20Stitch%20%F0%9F%91%8B%20I%27m%20interested%20in%20the%20Coffee%20Table%20%28%C2%A3180%29.%20Does%20it%20come%20in%20my%20sofa%20fabric%2C%20and%20how%20does%20cash%20on%20delivery%20work%3F"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.118 1.528 5.845L.057 23.25a.75.75 0 00.927.928l5.432-1.465A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.925 0-3.734-.504-5.303-1.385l-.38-.221-3.924 1.059 1.078-3.817-.247-.396A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Order on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="acc-card">
+      <div class="acc-card-img"><img src="images/accessories/ashton-coffee-table.jpg" alt="Ashton Coffee Table — matching accessory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="acc-card-body">
+        <div class="acc-label">Accessory</div>
+        <div class="acc-name">Ashton Coffee Table</div>
+        <div class="acc-desc">Deep button-tufted with an inset glass top and polished chrome feet.</div>
+        <div class="acc-footer">
+          <div class="acc-price">£180</div>
+          <a data-qz-product="Ashton Coffee Table" class="btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/447438135313?text=Hi%20Sofa%20Stitch%20%F0%9F%91%8B%20I%27m%20interested%20in%20the%20Ashton%20Coffee%20Table%20%28%C2%A3180%29.%20Does%20it%20come%20in%20my%20sofa%20fabric%2C%20and%20how%20does%20cash%20on%20delivery%20work%3F"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.118 1.528 5.845L.057 23.25a.75.75 0 00.927.928l5.432-1.465A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.925 0-3.734-.504-5.303-1.385l-.38-.221-3.924 1.059 1.078-3.817-.247-.396A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Order on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="acc-card">
+      <div class="acc-card-img"><img src="images/accessories/lilly-coffee-table.jpg" alt="Lilly Coffee Table — matching accessory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="acc-card-body">
+        <div class="acc-label">Accessory</div>
+        <div class="acc-name">Lilly Coffee Table</div>
+        <div class="acc-desc">Soft fluted panels with a mirrored top — the Lilly look, in table form.</div>
+        <div class="acc-footer">
+          <div class="acc-price">£180</div>
+          <a data-qz-product="Lilly Coffee Table" class="btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/447438135313?text=Hi%20Sofa%20Stitch%20%F0%9F%91%8B%20I%27m%20interested%20in%20the%20Lilly%20Coffee%20Table%20%28%C2%A3180%29.%20Does%20it%20come%20in%20my%20sofa%20fabric%2C%20and%20how%20does%20cash%20on%20delivery%20work%3F"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.118 1.528 5.845L.057 23.25a.75.75 0 00.927.928l5.432-1.465A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.925 0-3.734-.504-5.303-1.385l-.38-.221-3.924 1.059 1.078-3.817-.247-.396A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Order on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="acc-card">
+      <div class="acc-card-img"><img src="images/accessories/chesterfield-coffee-table.jpg" alt="Chesterfield Coffee Table — matching accessory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="acc-card-body">
+        <div class="acc-label">Accessory</div>
+        <div class="acc-name">Chesterfield Coffee Table</div>
+        <div class="acc-desc">Classic button tufting on turned wooden legs, with a clear glass top.</div>
+        <div class="acc-footer">
+          <div class="acc-price">£180</div>
+          <a data-qz-product="Chesterfield Coffee Table" class="btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/447438135313?text=Hi%20Sofa%20Stitch%20%F0%9F%91%8B%20I%27m%20interested%20in%20the%20Chesterfield%20Coffee%20Table%20%28%C2%A3180%29.%20Does%20it%20come%20in%20my%20sofa%20fabric%2C%20and%20how%20does%20cash%20on%20delivery%20work%3F"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.118 1.528 5.845L.057 23.25a.75.75 0 00.927.928l5.432-1.465A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.925 0-3.734-.504-5.303-1.385l-.38-.221-3.924 1.059 1.078-3.817-.247-.396A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Order on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="acc-card">
+      <div class="acc-card-img"><img src="images/accessories/ashton-stool.jpg" alt="Ashton Stool — matching accessory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="acc-card-body">
+        <div class="acc-label">Accessory</div>
+        <div class="acc-name">Ashton Stool</div>
+        <div class="acc-desc">A deep button-tufted square stool on chrome feet — matches your sofa fabric.</div>
+        <div class="acc-footer">
+          <div class="acc-price">£180</div>
+          <a data-qz-product="Ashton Stool" class="btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/447438135313?text=Hi%20Sofa%20Stitch%20%F0%9F%91%8B%20I%27m%20interested%20in%20the%20Ashton%20Stool%20%28%C2%A3180%29.%20Does%20it%20come%20in%20my%20sofa%20fabric%2C%20and%20how%20does%20cash%20on%20delivery%20work%3F"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.118 1.528 5.845L.057 23.25a.75.75 0 00.927.928l5.432-1.465A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.925 0-3.734-.504-5.303-1.385l-.38-.221-3.924 1.059 1.078-3.817-.247-.396A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Order on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="acc-card">
+      <div class="acc-card-img"><img src="images/accessories/chesterfield-stool.jpg" alt="Chesterfield Stool — matching accessory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="acc-card-body">
+        <div class="acc-label">Accessory</div>
+        <div class="acc-name">Chesterfield Stool</div>
+        <div class="acc-desc">Generous square ottoman in full button tufting — footrest or extra seat.</div>
+        <div class="acc-footer">
+          <div class="acc-price">£180</div>
+          <a data-qz-product="Chesterfield Stool" class="btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/447438135313?text=Hi%20Sofa%20Stitch%20%F0%9F%91%8B%20I%27m%20interested%20in%20the%20Chesterfield%20Stool%20%28%C2%A3180%29.%20Does%20it%20come%20in%20my%20sofa%20fabric%2C%20and%20how%20does%20cash%20on%20delivery%20work%3F"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.118 1.528 5.845L.057 23.25a.75.75 0 00.927.928l5.432-1.465A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.925 0-3.734-.504-5.303-1.385l-.38-.221-3.924 1.059 1.078-3.817-.247-.396A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Order on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="acc-card">
+      <div class="acc-card-img"><img src="images/accessories/round-ottoman-stool.jpg" alt="Round Ottoman Stool — matching accessory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="acc-card-body">
+        <div class="acc-label">Accessory</div>
+        <div class="acc-name">Round Ottoman Stool</div>
+        <div class="acc-desc">A round button-tufted ottoman on chrome feet — softens a square room.</div>
+        <div class="acc-footer">
+          <div class="acc-price">£180</div>
+          <a data-qz-product="Round Ottoman Stool" class="btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/447438135313?text=Hi%20Sofa%20Stitch%20%F0%9F%91%8B%20I%27m%20interested%20in%20the%20Round%20Ottoman%20Stool%20%28%C2%A3180%29.%20Does%20it%20come%20in%20my%20sofa%20fabric%2C%20and%20how%20does%20cash%20on%20delivery%20work%3F"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.118 1.528 5.845L.057 23.25a.75.75 0 00.927.928l5.432-1.465A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.925 0-3.734-.504-5.303-1.385l-.38-.221-3.924 1.059 1.078-3.817-.247-.396A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Order on WhatsApp</a>
         </div>
       </div>
     </div>
@@ -2670,13 +2790,14 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
         <div class="pp-price" id="ppPrice"></div>
         <div class="pp-price-note">incl. delivery</div>
       </div>
+      <div class="pp-set-note" id="ppSetNote" style="display:none"></div>
       <div class="pp-delivery-badge">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>
         24–72 Hour Delivery · Free UK Delivery · Cash on Delivery · 14-Day Returns · Custom Sizes Available
       </div>
       <div class="pp-pricing" id="ppPricing" style="display:none"></div>
       <div class="pp-addons" id="ppAddons">
-        <div class="pp-addons-title">Complete your set <span>— optional, pay on delivery</span></div>
+        <div class="pp-addons-title">Complete your set <span>— £30 off each piece with your sofa, pay on delivery</span></div>
         <div class="pp-addons-grid" id="ppAddonsGrid"></div>
         <div class="pp-price-breakdown" id="ppPriceBreakdown"></div>
       </div>
@@ -2746,9 +2867,10 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
           <label class="form-label">Sofa <span>*</span></label>
           <select class="form-select" id="orderSofa">
             <option value="">Select a sofa...</option>
-            <option>Ashton Corner Sofa — £750</option>
+            <option>Ashton Corner Sofa — £749</option>
             <option>U-Shape Sofa — £699</option>
-            <option>Lilly Corner Sofa — £699</option>
+            <option>Original Lilly Corner Sofa — £699</option>
+            <option>Alska Corner Sofa — £699</option>
             <option>Lilly 2+3 Seater Sofa — £849</option>
             <option>Lilly U-Shape Sofa — £749</option>
             <option>Lilly L-Shape Sofa — £849</option>
@@ -2916,7 +3038,7 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
   const orderSofaSelect = document.getElementById('orderSofa');
 
   window.openOrderModal = function(productName, price) {
-    if (!productName) pendingAddons = blankAddonState();
+    if (!productName) ADDON_KEYS.forEach(function(k){ pendingAddons[k] = 0; });
     orderModalProduct.textContent = productName ? ('Selected: ' + productName + addonLabelSuffix(pendingAddons)) : '';
     if (productName) {
       for (let opt of orderSofaSelect.options) {
@@ -2957,9 +3079,17 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
     let orderTotal = sofaPriceMatch ? parseFloat(sofaPriceMatch[1].replace(/,/g,'')) : 0;
     const extraLines = [];
     ADDON_KEYS.forEach(function(k){
-      if (pendingAddons[k]) { extraLines.push('• ' + ADDONS[k].label + ' — £' + ADDONS[k].price); orderTotal += ADDONS[k].price; }
+      var q = pendingAddons[k];
+      if (q) {
+        var ap = addonPrice(k, true);
+        extraLines.push('• ' + ADDONS[k].label + (q > 1 ? ' x' + q : '') + ' — £' + (ap * q));
+        orderTotal += ap * q;
+      }
     });
-    const extrasBlock = extraLines.length ? ('\n*Extras:*\n' + extraLines.join('\n')) : '';
+    const orderSaving = stateSaving(pendingAddons);
+    const extrasBlock = extraLines.length
+      ? ('\n*Extras:*\n' + extraLines.join('\n') + (orderSaving ? ('\n_Set discount applied — saving £' + orderSaving + '_') : ''))
+      : '';
     const msg =
 `*NEW ORDER — Sofa Stitch*
 *Order Ref:* ${orderRef}
@@ -2992,6 +3122,7 @@ _Sent via sofastitch.co.uk_`;
   const ppCollection = document.getElementById('ppCollection');
   const ppName      = document.getElementById('ppName');
   const ppPrice     = document.getElementById('ppPrice');
+  const ppSetNote   = document.getElementById('ppSetNote');
   const ppDesc      = document.getElementById('ppDesc');
   const ppFeatures  = document.getElementById('ppFeatures');
   const ppPricing   = document.getElementById('ppPricing');
@@ -3066,14 +3197,45 @@ _Sent via sofastitch.co.uk_`;
 
   // ── ADD-ONS / PRICE BUILDER ──
   // ▼▼ EDIT PRODUCTS & PRICES HERE — this is the ONLY place add-ons live ▼▼
+  // price = what the piece costs on its own.
+  // set:true = this piece gets SET_DISCOUNT off when it is bought with a sofa.
+  var SET_DISCOUNT = 30;
   var ADDONS = {
-    table:   { label:'Coffee Table',   price:170, img:'images/coffeetable/coffeetable1.jpg',   sub:'Upholstered with glass top — matches your sofa' },
-    fixseat: { label:'Fix Seat Stool', price:100, img:'images/fixstool/fixseatstool.jpeg',   sub:'Matches your sofa fabric' },
-    lilly:   { label:'Lilly Stool',    price:120, img:'images/lillystool/lillystool.jpg',    sub:'Matches your sofa fabric' }
+    table:     { label:'Coffee Table',             price:180, set:true,  img:'images/coffeetable/coffeetable1.jpg',                sub:'Upholstered with a glass top — matches your sofa' },
+    ashtonTbl: { label:'Ashton Coffee Table',      price:180, set:true,  img:'images/accessories/ashton-coffee-table.jpg',         sub:'Deep button-tufted, glass top, chrome feet' },
+    lillyTbl:  { label:'Lilly Coffee Table',       price:180, set:true,  img:'images/accessories/lilly-coffee-table.jpg',          sub:'Fluted panels with a mirrored glass top' },
+    chestTbl:  { label:'Chesterfield Coffee Table',price:180, set:true,  img:'images/accessories/chesterfield-coffee-table.jpg',   sub:'Button-tufted with turned wooden legs' },
+    ashtonStl: { label:'Ashton Stool',             price:180, set:true,  img:'images/accessories/ashton-stool.jpg',                sub:'Deep button-tufted, chrome feet' },
+    chestStl:  { label:'Chesterfield Stool',       price:180, set:true,  img:'images/accessories/chesterfield-stool.jpg',          sub:'Square button-tufted ottoman' },
+    roundStl:  { label:'Round Ottoman Stool',      price:180, set:true,  img:'images/accessories/round-ottoman-stool.jpg',         sub:'Round button-tufted ottoman, chrome feet' },
+    fixseat:   { label:'Fix Seat Stool',           price:100, set:false, img:'images/fixstool/fixseatstool.jpeg',                  sub:'Matches your sofa fabric' },
+    lilly:     { label:'Lilly Stool',              price:120, set:false, img:'images/lillystool/lillystool.jpg',                   sub:'Matches your sofa fabric' }
   };
   // ▲▲ EDIT PRODUCTS & PRICES HERE ▲▲
   var ADDON_KEYS = Object.keys(ADDONS);
-  function blankAddonState(){ var s = {}; ADDON_KEYS.forEach(function(k){ s[k] = false; }); return s; }
+  var MAX_QTY    = 10;
+
+  // What one piece costs. withSofa = bought alongside a sofa, so the set discount applies.
+  function addonPrice(key, withSofa){
+    var a = ADDONS[key];
+    return (withSofa && a.set) ? (a.price - SET_DISCOUNT) : a.price;
+  }
+  function addonSaving(key, withSofa){ return (withSofa && ADDONS[key].set) ? SET_DISCOUNT : 0; }
+
+  // A representative set piece, for the "add any table or stool for £150" line
+  var REF_SET_KEY = ADDON_KEYS.filter(function(k){ return ADDONS[k].set; })[0];
+  function setPrice(){ return addonPrice(REF_SET_KEY, true); }
+  function fullPrice(){ return ADDONS[REF_SET_KEY].price; }
+
+  function blankAddonState(){ var s = {}; ADDON_KEYS.forEach(function(k){ s[k] = 0; }); return s; }
+  function stateTotal(state){ return ADDON_KEYS.reduce(function(t,k){ return t + state[k] * addonPrice(k, true); }, 0); }
+  function stateSaving(state){ return ADDON_KEYS.reduce(function(t,k){ return t + state[k] * addonSaving(k, true); }, 0); }
+  function stateLines(state){
+    return ADDON_KEYS.filter(function(k){ return state[k] > 0; }).map(function(k){
+      var q = state[k];
+      return { key:k, qty:q, label:ADDONS[k].label + (q > 1 ? ' ×' + q : ''), amount:q * addonPrice(k, true) };
+    });
+  }
 
   var pendingAddons = blankAddonState();
   var addonState    = blankAddonState();
@@ -3087,62 +3249,96 @@ _Sent via sofastitch.co.uk_`;
   function fmtGBP(n){ return '£' + n.toLocaleString('en-GB'); }
 
   function addonLabelSuffix(state){
-    var labels = ADDON_KEYS.filter(function(k){ return state[k]; }).map(function(k){ return ADDONS[k].label; });
+    var labels = stateLines(state).map(function(l){ return l.label; });
     return labels.length ? ' + ' + labels.join(' + ') : '';
   }
 
-  // Build one image card (customer sees the actual piece)
-  function addonCardHTML(key, selected){
-    var a = ADDONS[key];
-    return '<div class="addon-card' + (selected ? ' selected' : '') + '" data-addon="' + key + '">'
-      +   '<div class="addon-selected-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></div>'
+  // Show the set offer on every sofa card
+  document.querySelectorAll('.product-card').forEach(function(card){
+    var base = parseFloat(String(card.dataset.price).replace(/[£,]/g,'')) || 0;
+    if (!base) return;
+    var note = document.createElement('div');
+    note.className = 'product-set-note';
+    note.textContent = 'Add any table or stool for ' + fmtGBP(setPrice()) + ' — full set ' + fmtGBP(base + setPrice()) + ' (save ' + fmtGBP(SET_DISCOUNT) + ')';
+    var footer = card.querySelector('.product-footer');
+    if (footer) footer.parentNode.insertBefore(note, footer);
+  });
+
+  // One add-on card: picture, price, and either an Add button or a quantity stepper
+  function addonCardHTML(key, qty){
+    var a = ADDONS[key], p = addonPrice(key, true), save = addonSaving(key, true);
+    return '<div class="addon-card' + (qty > 0 ? ' selected' : '') + '" data-addon="' + key + '">'
+      +   '<div class="addon-selected-badge">' + qty + '</div>'
       +   '<img class="addon-card-img" src="' + a.img + '" alt="' + a.label + '" loading="lazy" onerror="this.style.display=\'none\'">'
       +   '<div class="addon-card-body">'
       +     '<span class="addon-name">' + a.label + '</span>'
       +     (a.sub ? '<span class="addon-sub">' + a.sub + '</span>' : '')
-      +     '<span class="addon-price">+ ' + fmtGBP(a.price) + '</span>'
-      +     '<button type="button" class="addon-add-btn">'
-      +       '<span class="ico-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14"/></svg>Add to order</span>'
-      +       '<span class="ico-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Added</span>'
-      +     '</button>'
+      +     '<span class="addon-price">+ ' + fmtGBP(p) + (save ? '<s>' + fmtGBP(a.price) + '</s>' : '') + '</span>'
+      +     (qty > 0
+            ? '<div class="addon-qty">'
+              + '<button type="button" class="qty-btn" data-act="dec" aria-label="Remove one">−</button>'
+              + '<span class="qty-num">' + qty + '</span>'
+              + '<button type="button" class="qty-btn" data-act="inc" aria-label="Add one">+</button>'
+              + '</div>'
+            : '<button type="button" class="addon-add-btn" data-act="inc">'
+              + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14"/></svg>Add to order'
+              + '</button>')
       +   '</div>'
       + '</div>';
   }
 
-  function renderAddonGrid(container, state, onToggle){
+  function renderAddonGrid(container, state, onChange){
     if (!container) return;
     container.innerHTML = ADDON_KEYS.map(function(k){ return addonCardHTML(k, state[k]); }).join('');
     container.querySelectorAll('.addon-card').forEach(function(card){
-      card.addEventListener('click', function(){
-        var k = card.dataset.addon;
-        state[k] = !state[k];
-        card.classList.toggle('selected', state[k]);
-        if (onToggle) onToggle();
+      card.addEventListener('click', function(e){
+        var k   = card.dataset.addon;
+        var btn = e.target.closest('[data-act]');
+        var act = btn ? btn.dataset.act : (state[k] > 0 ? null : 'inc');
+        if (!act) return;
+        state[k] = act === 'inc' ? Math.min(state[k] + 1, MAX_QTY) : Math.max(state[k] - 1, 0);
+        renderAddonGrid(container, state, onChange);
+        if (onChange) onChange();
       });
     });
   }
 
   // ---- Product page ----
   function renderPrice(animate){
-    var total = basePrice + ADDON_KEYS.reduce(function(s,k){ return s + (addonState[k] ? ADDONS[k].price : 0); }, 0);
+    var extra = stateTotal(addonState);
+    var save  = stateSaving(addonState);
+    var total = basePrice + extra;
     ppPrice.textContent = fmtGBP(total);
     if (animate){ ppPrice.classList.remove('pulse'); void ppPrice.offsetWidth; ppPrice.classList.add('pulse'); }
-    var parts = ADDON_KEYS.filter(function(k){ return addonState[k]; }).map(function(k){ return ADDONS[k].label + ' ' + fmtGBP(ADDONS[k].price); });
-    ppPriceBreakdown.textContent = parts.length
-      ? (fmtGBP(basePrice) + ' sofa + ' + parts.join(' + ') + '  =  ' + fmtGBP(total))
-      : '';
+
+    var lines = stateLines(addonState);
+    if (!lines.length) {
+      // Nothing added yet — advertise the set price
+      ppSetNote.innerHTML = 'Add any table or stool for <strong>' + fmtGBP(setPrice()) + '</strong> instead of ' + fmtGBP(fullPrice())
+        + ' — full set ' + fmtGBP(basePrice + setPrice())
+        + '<span class="save-pill">save ' + fmtGBP(SET_DISCOUNT) + '</span>';
+      ppSetNote.style.display = '';
+      ppPriceBreakdown.textContent = '';
+    } else {
+      ppSetNote.style.display = 'none';
+      ppPriceBreakdown.innerHTML = fmtGBP(basePrice) + ' sofa + '
+        + lines.map(function(l){ return l.label + ' ' + fmtGBP(l.amount); }).join(' + ')
+        + '  =  <strong>' + fmtGBP(total) + '</strong>'
+        + (save ? '<span class="save-pill">you save ' + fmtGBP(save) + '</span>' : '');
+    }
+
     if (currentCard){
-      var extras = ADDON_KEYS.filter(function(k){ return addonState[k]; }).map(function(k){ return ADDONS[k].label + ' (+' + fmtGBP(ADDONS[k].price) + ')'; });
       var waMsg = 'Hi Sofa Stitch 👋 I\'m interested in the ' + currentCard.dataset.name
-        + (extras.length ? ' with ' + extras.join(' and ') : '')
-        + ' (total ' + fmtGBP(total) + '). Could you share the delivery time, colour options, and how cash on delivery works?';
+        + (lines.length ? ' with ' + lines.map(function(l){ return l.label; }).join(' and ') : '')
+        + ' (total ' + fmtGBP(total) + ').' + (save ? ' Set discount ' + fmtGBP(save) + '.' : '')
+        + ' Could you share the delivery time, colour options, and how cash on delivery works?';
       ppWaBtn.href = 'https://wa.me/447438135313?text=' + encodeURIComponent(waMsg);
     }
   }
 
   function resetAddons(card){
     basePrice = parseFloat(String(card.dataset.price).replace(/[£,]/g,'')) || 0;
-    addonState = blankAddonState();
+    ADDON_KEYS.forEach(function(k){ addonState[k] = 0; });
     renderAddonGrid(ppAddonsGrid, addonState, function(){ renderPrice(true); });
     renderPrice(false);
   }
@@ -3152,14 +3348,24 @@ _Sent via sofastitch.co.uk_`;
     var m = orderSofaSelect.value.match(/£([\d,]+)/);
     return m ? parseFloat(m[1].replace(/,/g,'')) : 0;
   }
+  function currentSofaName(){
+    return orderSofaSelect.value ? orderSofaSelect.value.split(' — ')[0] : '';
+  }
   function updateModalTotal(){
-    var extra = ADDON_KEYS.reduce(function(s,k){ return s + (pendingAddons[k] ? ADDONS[k].price : 0); }, 0);
+    var extra = stateTotal(pendingAddons);
+    var save  = stateSaving(pendingAddons);
     var base  = currentSofaBase();
-    var selected = ADDON_KEYS.filter(function(k){ return pendingAddons[k]; }).map(function(k){ return ADDONS[k].label; });
-    if (!base && !extra){ modalAddonTotal.innerHTML = ''; }
-    else if (selected.length){ modalAddonTotal.innerHTML = 'With ' + selected.join(' + ') + ' &nbsp;·&nbsp; Order total <span>' + fmtGBP(base + extra) + '</span>'; }
-    else { modalAddonTotal.innerHTML = 'Order total <span>' + fmtGBP(base) + '</span>'; }
-    var pname = orderSofaSelect.value ? orderSofaSelect.value.split(' — ')[0] : '';
+    var lines = stateLines(pendingAddons);
+    if (!base && !extra){
+      modalAddonTotal.innerHTML = '';
+    } else if (lines.length){
+      modalAddonTotal.innerHTML = 'With ' + lines.map(function(l){ return l.label; }).join(' + ')
+        + ' &nbsp;·&nbsp; Order total <span>' + fmtGBP(base + extra) + '</span>'
+        + (save ? '<span class="save-pill">save ' + fmtGBP(save) + '</span>' : '');
+    } else {
+      modalAddonTotal.innerHTML = 'Order total <span>' + fmtGBP(base) + '</span>';
+    }
+    var pname = currentSofaName();
     if (pname) orderModalProduct.textContent = 'Selected: ' + pname + addonLabelSuffix(pendingAddons);
   }
   function renderModalAddons(){
@@ -3179,7 +3385,7 @@ _Sent via sofastitch.co.uk_`;
   // Order button on product page
   ppOrderBtn.addEventListener('click', () => {
     if (currentCard) {
-      pendingAddons = Object.assign({}, addonState);
+      ADDON_KEYS.forEach(function(k){ pendingAddons[k] = addonState[k]; });
       closeProductPage();
       window.openOrderModal(currentCard.dataset.name, currentCard.dataset.price);
     }
@@ -3266,7 +3472,8 @@ _Sent via sofastitch.co.uk_`;
             <option value="">Choose the sofa you'd like...</option>
             <option>Ashton Corner Sofa</option>
             <option>U-Shape Sofa</option>
-            <option>Lilly Corner Sofa</option>
+            <option>Original Lilly Corner Sofa</option>
+            <option>Alska Corner Sofa</option>
             <option>Lilly 2+3 Seater Sofa</option>
             <option>Lilly U-Shape Sofa</option>
             <option>Lilly L-Shape Sofa</option>
