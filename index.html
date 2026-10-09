@@ -4042,8 +4042,43 @@ sizeLine + '\n\n' +
   setTimeout(function(){ h1 && h1.classList.add('ss-in'); }, reduce?0:(noload?120:420));
   document.querySelectorAll('.section-title').forEach(split);
   // image reveals
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('ss-shown'); io.unobserve(e.target);} }); },{threshold:.15});
-  document.querySelectorAll('.product-card-img,.acc-card-img').forEach(function(el){ io.observe(el); });
+  /* Image reveals.
+     The old code observed .product-card-img directly — but that element is
+     hidden with clip-path:inset(100% 0 0 0) until it gets .ss-shown. A
+     clip-path'd element reports intersectionRatio 0, so the observer never
+     fired, so .ss-shown was never added, so the clip-path never lifted: a
+     deadlock that left every product/accessory image permanently blank in
+     Chrome. (Safari ignores clip-path for this calculation, which is why it
+     looked fine there.)
+     Fix: observe the CARD, which is never clipped, and reveal the image
+     inside it. */
+  var revealTargets = [];
+  document.querySelectorAll('.product-card-img,.acc-card-img').forEach(function(el){
+    revealTargets.push({ watch: el.closest('.product-card,.acc-card') || el.parentElement || el, img: el });
+  });
+  function revealAll(){ revealTargets.forEach(function(t){ t.img.classList.add('ss-shown'); }); }
+
+  if (typeof IntersectionObserver === 'function') {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var hit = revealTargets.filter(function(t){ return t.watch === e.target; });
+        hit.forEach(function(t){ t.img.classList.add('ss-shown'); });
+        io.unobserve(e.target);
+      });
+    }, { threshold: .15 });
+    revealTargets.forEach(function(t){ io.observe(t.watch); });
+    /* Safety net: whatever happens, an image is never left permanently
+       invisible — a blank product grid costs orders. */
+    setTimeout(function(){
+      revealTargets.forEach(function(t){
+        var r = t.watch.getBoundingClientRect();
+        if (r.top < innerHeight * 1.5 && r.bottom > -innerHeight * 0.5) t.img.classList.add('ss-shown');
+      });
+    }, 2500);
+  } else {
+    revealAll();
+  }
   // stagger product cards within a row
   document.querySelectorAll('.products-grid .product-card-img, .acc-grid .acc-card-img').forEach(function(el,i){ el.style.transitionDelay=((i%3)*0.12)+'s'; });
   // hero parallax
