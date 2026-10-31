@@ -1274,6 +1274,16 @@ src="https://www.facebook.com/tr?id=961096633131880&ev=PageView&noscript=1"
   .modal-addons .addon-card-img { height:104px; }
   .modal-addon-total { margin-top:12px; font-size:14px; font-weight:600; color:var(--text); background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:10px 14px; }
   .modal-addon-total span { color:var(--gold); }
+  .pp-quality { margin:18px 0 4px; }
+  .pp-quality-title { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); font-weight:600; margin-bottom:10px; }
+  .pp-quality-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .pp-quality-opt { display:flex; flex-direction:column; gap:3px; text-align:left; cursor:pointer; padding:12px 14px; border:1px solid var(--border); border-radius:6px; background:var(--bg2); font-family:inherit; transition:border-color .18s, background .18s; }
+  .pp-quality-opt:hover { border-color:var(--gold); }
+  .pp-quality-opt.active { border-color:var(--gold); background:rgba(190,155,90,.08); }
+  .pp-quality-name { font-size:15px; font-weight:600; color:var(--text); }
+  .pp-quality-sub { font-size:12px; color:var(--text-muted); line-height:1.4; }
+  .pp-quality-price { font-size:15px; font-weight:600; color:var(--gold); margin-top:4px; }
+  @media (max-width:520px){ .pp-quality-grid { grid-template-columns:1fr; } }
   .pp-price-breakdown { font-size:13px; color:var(--text-muted); margin-top:12px; min-height:18px; }
   .pp-price { display:inline-block; transform-origin:left center; }
   @keyframes pricePulse { 0%{transform:scale(1);} 35%{transform:scale(1.13); color:var(--gold-light);} 100%{transform:scale(1);} }
@@ -2336,7 +2346,8 @@ footer::after{content:'Sofa Stitch';display:block;text-align:center;font-family:
     <div class="product-card visible" data-category="corner"
       data-name="Original Lilly Corner Sofa"
       data-collection="Corner Collection"
-      data-price="£699"
+      data-price="£749"
+      data-qualities='[{"label":"Normal","price":749,"note":"Our standard Lilly build"},{"label":"Premium","price":829,"note":"Upgraded foam, fabric &amp; finish"}]'
       data-desc="Soft channel-stitched styling with plush, pillow-back comfort. The Original Lilly corner is a warm, inviting centrepiece for any family living room."
       data-images='["images/corner-lilly/lilly1.jpg", "images/corner-lilly/lilly5.jpg", "images/corner-lilly/lilly8.jpg", "images/corner-lilly/lilly7.jpg"]'
       data-features='["Available in multiple fabric options", "Sturdy hardwood frame", "Deep foam & fibre cushions", "Custom size available"]'>
@@ -2348,9 +2359,9 @@ footer::after{content:'Sofa Stitch';display:block;text-align:center;font-family:
       <div class="product-card-body">
         <div class="product-collection-label">Corner Collection</div>
         <div class="product-name">Original Lilly</div>
-        <div class="product-desc">Plush channel-stitched corner sofa with deep pillow-back comfort.</div>
+        <div class="product-desc">Plush channel-stitched corner sofa with deep pillow-back comfort. Normal or Premium quality.</div>
         <div class="product-footer">
-          <div class="product-price">£699 <span>incl. delivery</span></div>
+          <div class="product-price">From £749 <span>Premium £829 · incl. delivery</span></div>
           <a href="#" class="btn-whatsapp product-wa" data-product="Original Lilly Corner Sofa">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.118 1.528 5.845L.057 23.25a.75.75 0 00.927.928l5.432-1.465A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.925 0-3.734-.504-5.303-1.385l-.38-.221-3.924 1.059 1.078-3.817-.247-.396A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
             Order on WhatsApp
@@ -3092,6 +3103,7 @@ footer::after{content:'Sofa Stitch';display:block;text-align:center;font-family:
         <div class="pp-price" id="ppPrice"></div>
         <div class="pp-price-note">incl. delivery</div>
       </div>
+      <div class="pp-quality" id="ppQuality" style="display:none"></div>
       <div class="pp-set-note" id="ppSetNote" style="display:none"></div>
       <div class="pp-delivery-badge">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>
@@ -3171,7 +3183,8 @@ footer::after{content:'Sofa Stitch';display:block;text-align:center;font-family:
             <option value="">Select a sofa...</option>
             <option>Ashton Corner Sofa — £799</option>
             <option>U-Shape Sofa — £749</option>
-            <option>Original Lilly Corner Sofa — £699</option>
+            <option>Original Lilly Corner Sofa (Normal) — £749</option>
+            <option>Original Lilly Corner Sofa (Premium) — £829</option>
             <option>Alska Corner Sofa — £699</option>
             <option>Lilly 2+3 Seater Sofa — £849</option>
             <option>Lilly U-Shape Sofa — £799</option>
@@ -3509,6 +3522,7 @@ _Sent via sofastitch.co.uk_`;
     });
     // GA4 - which sofa was viewed
     try { gtag('event', 'view_item', { product: card.dataset.name, items: [{ item_name: card.dataset.name }] }); } catch(e){}
+    renderQuality(card);
     resetAddons(card);
     productPage.classList.add('open');
     productPage.scrollTop = 0;
@@ -3623,6 +3637,44 @@ _Sent via sofastitch.co.uk_`;
     });
   }
 
+  // ---- Quality grades (Normal / Premium) ----
+  var ppQuality       = document.getElementById('ppQuality');
+  var selectedQuality = null;
+
+  function currentProductName(){
+    if (!currentCard) return '';
+    return currentCard.dataset.name + (selectedQuality ? ' (' + selectedQuality.label + ')' : '');
+  }
+
+  function renderQuality(card){
+    selectedQuality = null;
+    if (!ppQuality) return;
+    var raw = card.dataset.qualities;
+    if (!raw) { ppQuality.style.display = 'none'; ppQuality.innerHTML = ''; return; }
+    var opts;
+    try { opts = JSON.parse(raw); } catch(e){ ppQuality.style.display = 'none'; return; }
+    if (!opts || !opts.length) { ppQuality.style.display = 'none'; return; }
+    selectedQuality = opts[0];
+    ppQuality.style.display = '';
+    ppQuality.innerHTML = '<div class="pp-quality-title">Choose your quality</div><div class="pp-quality-grid">'
+      + opts.map(function(o, i){
+          return '<button type="button" class="pp-quality-opt' + (i === 0 ? ' active' : '') + '" data-i="' + i + '">'
+            + '<span class="pp-quality-name">' + o.label + '</span>'
+            + '<span class="pp-quality-sub">' + o.note + '</span>'
+            + '<span class="pp-quality-price">' + fmtGBP(o.price) + '</span></button>';
+        }).join('')
+      + '</div>';
+    ppQuality.querySelectorAll('.pp-quality-opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        ppQuality.querySelectorAll('.pp-quality-opt').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        selectedQuality = opts[parseInt(btn.dataset.i, 10)];
+        basePrice = selectedQuality.price;
+        renderPrice(true);
+      });
+    });
+  }
+
   // ---- Product page ----
   function renderPrice(animate){
     var extra = stateTotal(addonState);
@@ -3648,7 +3700,7 @@ _Sent via sofastitch.co.uk_`;
     }
 
     if (currentCard){
-      var waMsg = 'Hi Sofa Stitch 👋 I\'m interested in the ' + currentCard.dataset.name
+      var waMsg = 'Hi Sofa Stitch 👋 I\'m interested in the ' + currentProductName()
         + (lines.length ? ' with ' + lines.map(function(l){ return l.label; }).join(' and ') : '')
         + ' (total ' + fmtGBP(total) + ').' + (save ? ' Set discount ' + fmtGBP(save) + '.' : '')
         + ' Could you share the delivery time, colour options, and how cash on delivery works?';
@@ -3657,7 +3709,7 @@ _Sent via sofastitch.co.uk_`;
   }
 
   function resetAddons(card){
-    basePrice = parseFloat(String(card.dataset.price).replace(/[£,]/g,'')) || 0;
+    basePrice = selectedQuality ? selectedQuality.price : (parseFloat(String(card.dataset.price).replace(/[£,]/g,'')) || 0);
     ADDON_KEYS.forEach(function(k){ addonState[k] = 0; });
     renderAddonGrid(ppAddonsGrid, addonState, function(){ renderPrice(true); });
     renderPrice(false);
@@ -3707,7 +3759,7 @@ _Sent via sofastitch.co.uk_`;
     if (currentCard) {
       ADDON_KEYS.forEach(function(k){ pendingAddons[k] = addonState[k]; });
       closeProductPage();
-      window.openOrderModal(currentCard.dataset.name, currentCard.dataset.price);
+      window.openOrderModal(currentProductName(), selectedQuality ? fmtGBP(selectedQuality.price) : currentCard.dataset.price);
     }
   });
 
@@ -3732,7 +3784,7 @@ _Sent via sofastitch.co.uk_`;
     if (!link || link.classList.contains('nav-cta')) return;
     e.preventDefault();
     var product = '';
-    if (link.id === 'ppWaBtn' && currentCard) product = currentCard.dataset.name;
+    if (link.id === 'ppWaBtn' && currentCard) product = currentProductName();
     else if (link.dataset.qzProduct) product = link.dataset.qzProduct;
     if (window.openQualify) window.openQualify(product);
   }, true);
@@ -3792,7 +3844,8 @@ _Sent via sofastitch.co.uk_`;
             <option value="">Choose the sofa you'd like...</option>
             <option>Ashton Corner Sofa</option>
             <option>U-Shape Sofa</option>
-            <option>Original Lilly Corner Sofa</option>
+            <option>Original Lilly Corner Sofa (Normal)</option>
+            <option>Original Lilly Corner Sofa (Premium)</option>
             <option>Alska Corner Sofa</option>
             <option>Lilly 2+3 Seater Sofa</option>
             <option>Lilly U-Shape Sofa</option>
